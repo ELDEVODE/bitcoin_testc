@@ -3,25 +3,32 @@
     "bitcoin_test_backend": {
       "candid": "src/bitcoin_test_backend/bitcoin_test_backend.did",
       "package": "bitcoin_test_backend",
-      "type": "rust"
+      "type": "rust",
+      "wasm": "target/wasm32-unknown-unknown/release/bitcoin_test_backend.wasm"
     },
     "bitcoin_test_frontend": {
-      "dependencies": [
-        "bitcoin_test_backend"
-      ],
-      "source": [
-        "src/bitcoin_test_frontend/dist"
-      ],
+      "dependencies": ["bitcoin_test_backend"],
+      "source": ["src/bitcoin_test_frontend/dist"],
       "type": "assets",
       "workspace": "bitcoin_test_frontend"
     }
   },
   "defaults": {
+    "bitcoin": {
+      "enabled": true,
+      "nodes": ["127.0.0.1:18444"],
+      "log_level": "info"
+    },
     "build": {
       "args": "",
       "packtool": ""
     }
   },
   "output_env_file": ".env",
-  "version": 1
+  "version": 1,
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:4940"
+    }
+  }
 }
